@@ -5,6 +5,7 @@
     'author': 'leapai.ai',
     'website': 'https://leapai.ai',
     'depends': ['account_reports', 'analytic'],
+    'images': ['static/description/screenshot.jpg'],
     'data': [
         'data/account_reports_analytic.xml',
     ],
