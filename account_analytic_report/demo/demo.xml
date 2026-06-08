@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ================================================================
+         Demo analytic accounts (Project plan)
+         ================================================================ -->
+    <record id="demo_analytic_web_dev" model="account.analytic.account">
+        <field name="name">Demo: Web Development</field>
+        <field name="plan_id" ref="analytic.analytic_plan_projects"/>
+    </record>
+    <record id="demo_analytic_marketing" model="account.analytic.account">
+        <field name="name">Demo: Marketing</field>
+        <field name="plan_id" ref="analytic.analytic_plan_projects"/>
+    </record>
+    <record id="demo_analytic_operations" model="account.analytic.account">
+        <field name="name">Demo: Operations</field>
+        <field name="plan_id" ref="analytic.analytic_plan_projects"/>
+    </record>
+
+    <!-- ================================================================
+         Customer Invoices (out_invoice)
+         ================================================================ -->
+
+    <!-- Azure Interior: 100% Web Development -->
+    <record id="demo_invoice_azure" model="account.move">
+        <field name="move_type">out_invoice</field>
+        <field name="partner_id" ref="base.res_partner_12"/>
+        <field name="invoice_date">2026-05-10</field>
+        <field name="invoice_line_ids">
+            <record model="account.move.line">
+                <field name="product_id" ref="product.product_product_1"/>
+                <field name="quantity">3</field>
+                <field name="price_unit">500</field>
+                <field name="analytic_distribution" eval="{str(ref('account_analytic_report.demo_analytic_web_dev')): 100.0}"/>
+            </record>
+            <record model="account.move.line">
+                <field name="product_id" ref="product.product_product_furniture"/>
+                <field name="quantity">2</field>
+                <field name="price_unit">250</field>
+                <field name="analytic_distribution" eval="{str(ref('account_analytic_report.demo_analytic_marketing')): 100.0}"/>
+            </record>
+        </field>
+    </record>
+
+    <!-- Wood Corner: split 60/40 Web Dev / Operations -->
+    <record id="demo_invoice_wood" model="account.move">
+        <field name="move_type">out_invoice</field>
+        <field name="partner_id" ref="base.res_partner_1"/>
+        <field name="invoice_date">2026-05-18</field>
+        <field name="invoice_line_ids">
+            <record model="account.move.line">
+                <field name="product_id" ref="product.product_product_1"/>
+                <field name="quantity">1</field>
+                <field name="price_unit">1200</field>
+                <field name="analytic_distribution" eval="{str(ref('account_analytic_report.demo_analytic_web_dev')): 60.0, str(ref('account_analytic_report.demo_analytic_operations')): 40.0}"/>
+            </record>
+        </field>
+    </record>
+
+    <!-- Lumber Inc: 100% Marketing -->
+    <record id="demo_invoice_lumber" model="account.move">
+        <field name="move_type">out_invoice</field>
+        <field name="partner_id" ref="base.res_partner_18"/>
+        <field name="invoice_date">2026-06-02</field>
+        <field name="invoice_line_ids">
+            <record model="account.move.line">
+                <field name="product_id" ref="product.product_product_furniture"/>
+                <field name="quantity">4</field>
+                <field name="price_unit">175</field>
+                <field name="analytic_distribution" eval="{str(ref('account_analytic_report.demo_analytic_marketing')): 100.0}"/>
+            </record>
+        </field>
+    </record>
+
+    <!-- ================================================================
+         Vendor Bills (in_invoice)
+         ================================================================ -->
+
+    <!-- Ready Mat: 100% Operations -->
+    <record id="demo_bill_ready_mat" model="account.move">
+        <field name="move_type">in_invoice</field>
+        <field name="partner_id" ref="base.res_partner_4"/>
+        <field name="invoice_date">2026-05-20</field>
+        <field name="invoice_line_ids">
+            <record model="account.move.line">
+                <field name="product_id" ref="product.expense_product"/>
+                <field name="quantity">5</field>
+                <field name="price_unit">80</field>
+                <field name="analytic_distribution" eval="{str(ref('account_analytic_report.demo_analytic_operations')): 100.0}"/>
+            </record>
+        </field>
+    </record>
+
+    <!-- Wood Corner as vendor: split 50/50 Web Dev / Marketing -->
+    <record id="demo_bill_wood" model="account.move">
+        <field name="move_type">in_invoice</field>
+        <field name="partner_id" ref="base.res_partner_1"/>
+        <field name="invoice_date">2026-06-01</field>
+        <field name="invoice_line_ids">
+            <record model="account.move.line">
+                <field name="product_id" ref="product.expense_product"/>
+                <field name="quantity">2</field>
+                <field name="price_unit">300</field>
+                <field name="analytic_distribution" eval="{str(ref('account_analytic_report.demo_analytic_web_dev')): 50.0, str(ref('account_analytic_report.demo_analytic_marketing')): 50.0}"/>
+            </record>
+        </field>
+    </record>
+
+    <!-- ================================================================
+         Post all demo moves (one by one for reliability)
+         ================================================================ -->
+    <function model="account.move" name="action_post">
+        <value model="account.move" search="[('id', '=', ref('account_analytic_report.demo_invoice_azure'))]"/>
+    </function>
+    <function model="account.move" name="action_post">
+        <value model="account.move" search="[('id', '=', ref('account_analytic_report.demo_invoice_wood'))]"/>
+    </function>
+    <function model="account.move" name="action_post">
+        <value model="account.move" search="[('id', '=', ref('account_analytic_report.demo_invoice_lumber'))]"/>
+    </function>
+    <function model="account.move" name="action_post">
+        <value model="account.move" search="[('id', '=', ref('account_analytic_report.demo_bill_ready_mat'))]"/>
+    </function>
+    <function model="account.move" name="action_post">
+        <value model="account.move" search="[('id', '=', ref('account_analytic_report.demo_bill_wood'))]"/>
+    </function>
+</odoo>
