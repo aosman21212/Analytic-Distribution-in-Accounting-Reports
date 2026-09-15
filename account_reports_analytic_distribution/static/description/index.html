@@ -180,6 +180,116 @@
             color: #374151;
         }
 
+        /* ── Contact ── */
+        .contact-section {
+            background: #F9FAFB;
+            border-top: 1px solid #E5E7EB;
+        }
+        .contact-logo {
+            display: block;
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            margin: 0 auto 16px;
+            border-radius: 14px;
+            background: #fff;
+            padding: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,.08);
+        }
+        .contact-section h2 {
+            text-align: center;
+            border-bottom: none;
+            margin-bottom: 4px;
+        }
+        .contact-subtitle {
+            text-align: center;
+            color: #6B7280;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .contact-card {
+            background: #fff;
+            border: 1px solid #E5E7EB;
+            border-top: 4px solid #714B67;
+            border-radius: 8px;
+            padding: 22px 18px;
+            text-align: center;
+        }
+        .contact-card .icon { font-size: 26px; margin-bottom: 8px; display: block; }
+        .contact-card h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+        .contact-card p {
+            font-size: 13.5px;
+            color: #4B5563;
+            line-height: 1.55;
+        }
+        .contact-card p a { color: #4B5563; text-decoration: none; }
+        .contact-btn {
+            display: inline-block;
+            margin-top: 12px;
+            background: #714B67;
+            color: #fff;
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 12.5px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .contact-btn:hover, .contact-btn:focus { background: #4A2F47; }
+        .developer-card {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            background: linear-gradient(135deg, #714B67 0%, #4A2F47 100%);
+            color: #fff;
+            border-radius: 10px;
+            padding: 22px 24px;
+        }
+        .developer-avatar {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.15);
+            border: 2px solid rgba(255,255,255,.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .developer-info { flex: 1; }
+        .developer-info h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: #fff; }
+        .developer-info p { font-size: 13px; opacity: .88; line-height: 1.5; }
+        .linkedin-btn {
+            flex-shrink: 0;
+            display: inline-block;
+            background: #0A66C2;
+            color: #fff;
+            padding: 9px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .linkedin-btn:hover, .linkedin-btn:focus { background: #fff; color: #0A66C2; }
+
+        @media (max-width: 720px) {
+            .feature-grid, .contact-grid { grid-template-columns: 1fr; }
+            .developer-card { flex-direction: column; text-align: center; }
+            .hero { flex-direction: column; text-align: center; }
+        }
+
         /* ── Footer ── */
         footer {
             background: #F9FAFB;
@@ -359,6 +469,49 @@
     </section>
 
 </div><!-- /wrapper -->
+
+<!-- Contact LEAP AI -->
+<div class="contact-section">
+    <div class="wrapper">
+        <img class="contact-logo" src="icon.png" alt="LEAP AI"/>
+        <h2>Contact LEAP AI</h2>
+        <p class="contact-subtitle">King Abdulaziz Branch Road, Riyadh, Saudi Arabia</p>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <span class="icon">📍</span>
+                <h3>Our Location</h3>
+                <p>King Abdulaziz Branch Road<br/>Riyadh, Saudi Arabia</p>
+                <a class="contact-btn"
+                   href="https://www.google.com/maps/search/?api=1&amp;query=King+Abdulaziz+Branch+Road+Riyadh+Saudi+Arabia"
+                   target="_blank" rel="noopener noreferrer">View on map</a>
+            </div>
+            <div class="contact-card">
+                <span class="icon">✉️</span>
+                <h3>Send an Email</h3>
+                <p><a href="mailto:sales@leapai.ai">sales@leapai.ai</a></p>
+                <a class="contact-btn" href="mailto:sales@leapai.ai">Email us now</a>
+            </div>
+            <div class="contact-card">
+                <span class="icon">📞</span>
+                <h3>Call Anytime</h3>
+                <p><a href="tel:+966535533627">+966 53 553 3627</a></p>
+                <a class="contact-btn" href="tel:+966535533627">Call now</a>
+            </div>
+        </div>
+
+        <div class="developer-card">
+            <div class="developer-avatar">AO</div>
+            <div class="developer-info">
+                <h3>Abdulkaraim Osman</h3>
+                <p>Tech Manager | Backend Engineer | DevOps Engineer<br/>at Bab International Corp For Specialized Services</p>
+            </div>
+            <a class="linkedin-btn"
+               href="https://www.linkedin.com/in/abdulkaraim-o-385b7a110/"
+               target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+        </div>
+    </div>
+</div>
 
 <footer>
     <span>© 2026 <a href="https://leapai.ai" target="_blank">LeapAI</a> — LGPL-3 License</span>
