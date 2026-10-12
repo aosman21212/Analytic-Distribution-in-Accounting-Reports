@@ -29,7 +29,9 @@
     'demo': [
         'demo/demo.xml',
     ],
-    'installable': True,
+   'installable': True,
     'auto_install': False,
-    'license': 'LGPL-3',
+    'license': 'OPL-1',
+    'price': 0.05,
+    'currency': 'USD',
 }
